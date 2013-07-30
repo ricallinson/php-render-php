@@ -1,7 +1,7 @@
 <?php
 namespace php_require\php_render_php;
 
-$module->exports = function ($filename, $data, $callback) {
+$module->exports = function ($filename, $data=array(), $callback=null) {
 
     ob_start();
     extract($data);
@@ -14,5 +14,10 @@ $module->exports = function ($filename, $data, $callback) {
     include($filename);
     $buffer = ob_get_contents();
     ob_end_clean();
-    $callback(null, $buffer);
+
+    if ($callback) {
+        $callback(null, $buffer);
+    }
+
+    return $buffer;
 };
