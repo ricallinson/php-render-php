@@ -8,7 +8,7 @@ $module->exports = function ($filename, $data=array(), $callback=null) {
 
     $end = 0;
     if (isset($start)) {
-        $end = (microtime(true) - $start) / 1000;
+        $end = round(microtime(true) - $start);
     }
 
     include($filename);
